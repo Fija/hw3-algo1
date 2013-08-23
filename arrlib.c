@@ -36,7 +36,7 @@ static int *array_init(char *arg, ...)
         arr = (int *)malloc((len+2) * sizeof(int));
         assert (arr);
         arr[0] = len;
-        arr[1] = len;
+        arr[1] = 0;
         return arr+2;
     }else if (0 == strcmp(arg, "val")) {
         int i;
@@ -108,12 +108,12 @@ static int **dataframe_init(char *arg, ...)
         assert(df);
         df[0] = (int *)malloc(2 * sizeof(int));
         df[0][0] = dim_one;
-        df[0][1] = dim_one;
+        df[0][1] = 0;
         for(i = 1; i < dim_one+1; i++) {
             df[i] = (int *)malloc((dim_two+2)*sizeof(int)) + 2;
             assert (df[i]);
             df[i][-2] = dim_two;
-            df[i][-1] = dim_two;
+            df[i][-1] = 0;
         }
     }
     return df+1;
@@ -139,7 +139,7 @@ static void dataframe_print(int **df)
     for (i = 0; i < df[-1][1]; i++) {
         printf("[");
         for (j = 0; j < df[i][-1]; j++) printf("%d ", df[i][j]);
-        printf("\b], count = %d, length = %d \n", df[i][-1], df[i][-2]);
+        printf("], count = %d, length = %d \n", df[i][-1], df[i][-2]);
     }
     printf("**************************************\n");
 }
