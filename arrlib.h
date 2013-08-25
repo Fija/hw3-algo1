@@ -30,6 +30,11 @@ typedef const struct DATAFRAME_METHOD {
     int **(*init)(char *arg, ...);
     void (*free)(int **df);
     void (*print)(int **df);
+    int (*neptr)(int **df);
+    int (*elmcnt)(int **df);
+    void (*remove)(int **df, char *arg, ...);
+    void (*append)(int **df, char *arg, ...);
+    void (*copy)(int **dest, int **src);
 } DATAFRAME_METHOD;
 
 extern const DATAFRAME_METHOD Dataframe;
